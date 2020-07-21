@@ -159,6 +159,7 @@ class _EmailPasswordSignInPageContentsState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          _buildLogo(),
           const SizedBox(height: 48.0),
           _buildEmailField(),
           if (model.formType !=
