@@ -3,7 +3,7 @@ part of email_password_sign_in_ui;
 class EmailPasswordSignInPage extends StatelessWidget {
   const EmailPasswordSignInPage({Key key, this.onSignedIn, this.logoImage}) : super(key: key);
   final VoidCallback onSignedIn;
-  final Image logoImage;
+  final AssetImage logoImage;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class EmailPasswordSignInPageContents extends StatefulWidget {
       : super(key: key);
   final EmailPasswordSignInModel model;
   final VoidCallback onSignedIn;
-  final Image logoImage;
+  final AssetImage logoImage;
 
   @override
   _EmailPasswordSignInPageContentsState createState() =>
