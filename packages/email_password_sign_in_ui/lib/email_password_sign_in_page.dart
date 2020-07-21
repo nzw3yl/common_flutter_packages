@@ -126,6 +126,8 @@ class _EmailPasswordSignInPageContentsState
         labelText: model.passwordLabelText,
         errorText: model.passwordErrorText,
         enabled: !model.isLoading,
+        contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
       obscureText: true,
       autocorrect: false,
@@ -182,11 +184,7 @@ class _EmailPasswordSignInPageContentsState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 2.0,
-        title: Text(model.title),
-      ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: LayoutBuilder(builder: (context, constraints) {
