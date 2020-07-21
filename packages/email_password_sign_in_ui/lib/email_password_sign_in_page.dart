@@ -1,8 +1,9 @@
 part of email_password_sign_in_ui;
 
 class EmailPasswordSignInPage extends StatelessWidget {
-  const EmailPasswordSignInPage({Key key, this.onSignedIn}) : super(key: key);
+  const EmailPasswordSignInPage({Key key, this.onSignedIn, this.logoImage}) : super(key: key);
   final VoidCallback onSignedIn;
+  final Image logoImage;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class EmailPasswordSignInPage extends StatelessWidget {
       create: (_) => EmailPasswordSignInModel(auth: auth),
       child: Consumer<EmailPasswordSignInModel>(
         builder: (_, model, __) => EmailPasswordSignInPageContents(
-            model: model, onSignedIn: onSignedIn),
+            model: model, onSignedIn: onSignedIn, logoImage: logoImage),
       ),
     );
   }
@@ -20,10 +21,11 @@ class EmailPasswordSignInPage extends StatelessWidget {
 
 class EmailPasswordSignInPageContents extends StatefulWidget {
   const EmailPasswordSignInPageContents(
-      {Key key, @required this.model, this.onSignedIn})
+      {Key key, @required this.model, this.onSignedIn, this.logoImage})
       : super(key: key);
   final EmailPasswordSignInModel model;
   final VoidCallback onSignedIn;
+  final Image logoImage;
 
   @override
   _EmailPasswordSignInPageContentsState createState() =>
@@ -140,6 +142,17 @@ class _EmailPasswordSignInPageContentsState
     );
   }
 
+  Widget _buildLogo() {
+    return Hero(
+      tag: 'logo',
+      child: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        radius: 48.0,
+        child: widget.logoImage,
+      ),
+    );
+  }
+
   Widget _buildContent() {
     return FocusScope(
       node: _node,
@@ -153,7 +166,7 @@ class _EmailPasswordSignInPageContentsState
             const SizedBox(height: 8.0),
             _buildPasswordField(),
           ],
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 48.0),
           CustomRaisedButton(
             key: const Key('primary-button'),
             child: Text(model.primaryButtonText, style: TextStyle(color: Colors.white),),
