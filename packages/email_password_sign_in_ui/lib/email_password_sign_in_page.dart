@@ -195,12 +195,10 @@ class _EmailPasswordSignInPageContentsState
             return Container(
               width: min(constraints.maxWidth, 600),
               padding: const EdgeInsets.all(16.0),
-              child: Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: _buildContent(),
                 ),
-              ),
             );
           }),
         ),
