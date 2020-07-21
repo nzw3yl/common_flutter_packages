@@ -19,7 +19,7 @@ class User {
   final String displayName;
   final String tenantId;
 
-  factory User.fromFirebaseUser(FirebaseUser user, [String tenantId]) {
+  factory User.fromFirebaseUser({FirebaseUser user, String tenantId = 'TENANT_0'}) {
     if (user == null) {
       return null;
     }
@@ -42,12 +42,12 @@ class FirebaseAuthService {
 
   Stream<User> get onAuthStateChanged {
     return _firebaseAuth.onAuthStateChanged
-        .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
+        .map((firebaseUser) => User.fromFirebaseUser(user: firebaseUser));
   }
 
   Future<User> signInAnonymously() async {
     final AuthResult authResult = await _firebaseAuth.signInAnonymously();
-    return User.fromFirebaseUser(authResult.user);
+    return User.fromFirebaseUser(user: authResult.user);
   }
 
   Future<User> signInWithEmailAndPassword(String email, String password) async {
@@ -56,14 +56,14 @@ class FirebaseAuthService {
       email: email,
       password: password,
     ));
-    return User.fromFirebaseUser(authResult.user, 'TENANT_1');
+    return User.fromFirebaseUser(user: authResult.user, tenantId: 'TENANT_1');
   }
 
   Future<User> createUserWithEmailAndPassword(
       String email, String password) async {
     final AuthResult authResult = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
-    return User.fromFirebaseUser(authResult.user, 'TENANT_2');
+    return User.fromFirebaseUser(user: authResult.user, tenantId: 'TENANT_2');
   }
 
   Future<void> sendPasswordResetEmail(String email) async {
@@ -72,7 +72,7 @@ class FirebaseAuthService {
 
   Future<User> currentUser() async {
     final FirebaseUser user = await _firebaseAuth.currentUser();
-    return User.fromFirebaseUser(user);
+    return User.fromFirebaseUser(user: user);
   }
 
   Future<void> signOut() async {
