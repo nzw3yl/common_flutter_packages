@@ -148,7 +148,7 @@ class _EmailPasswordSignInPageContentsState
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 48.0,
-        child: widget.logoImage,
+        child: Image(image: widget.logoImage),
       ),
     );
   }
