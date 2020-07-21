@@ -10,14 +10,16 @@ class User {
     this.email,
     this.photoUrl,
     this.displayName,
+    this.tenantId,
   }) : assert(uid != null, 'User can only be created with a non-null uid');
 
   final String uid;
   final String email;
   final String photoUrl;
   final String displayName;
+  final String tenantId;
 
-  factory User.fromFirebaseUser(FirebaseUser user) {
+  factory User.fromFirebaseUser(FirebaseUser user, [String tenantId]) {
     if (user == null) {
       return null;
     }
@@ -26,6 +28,7 @@ class User {
       email: user.email,
       displayName: user.displayName,
       photoUrl: user.photoUrl,
+      tenantId: tenantId,
     );
   }
 
@@ -53,9 +56,7 @@ class FirebaseAuthService {
       email: email,
       password: password,
     ));
-    print('authResult: $authResult');
-    print('authResult.user: ${authResult.user}');
-    return User.fromFirebaseUser(authResult.user);
+    return User.fromFirebaseUser(authResult.user, 'TENANT_1');
   }
 
   Future<User> createUserWithEmailAndPassword(
