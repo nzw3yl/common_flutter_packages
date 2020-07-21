@@ -105,6 +105,8 @@ class _EmailPasswordSignInPageContentsState
         hintText: EmailPasswordSignInStrings.emailHint,
         errorText: model.emailErrorText,
         enabled: !model.isLoading,
+        contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
       autocorrect: false,
       textInputAction: TextInputAction.next,
@@ -144,7 +146,7 @@ class _EmailPasswordSignInPageContentsState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 48.0),
           _buildEmailField(),
           if (model.formType !=
               EmailPasswordSignInFormType.forgotPassword) ...<Widget>[
@@ -152,9 +154,11 @@ class _EmailPasswordSignInPageContentsState
             _buildPasswordField(),
           ],
           const SizedBox(height: 8.0),
-          FormSubmitButton(
+          CustomRaisedButton(
             key: const Key('primary-button'),
-            text: model.primaryButtonText,
+            child: Text(model.primaryButtonText, style: TextStyle(color: Colors.white),),
+            borderRadius: 24.0,
+            color: Colors.lightBlueAccent,
             loading: model.isLoading,
             onPressed: model.isLoading ? null : _submit,
           ),
