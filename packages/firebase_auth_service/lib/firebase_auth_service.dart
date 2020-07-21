@@ -53,6 +53,8 @@ class FirebaseAuthService {
       email: email,
       password: password,
     ));
+    print('authResult: $authResult');
+    print('authResult.user: ${authResult.user}');
     return User.fromFirebaseUser(authResult.user);
   }
 
