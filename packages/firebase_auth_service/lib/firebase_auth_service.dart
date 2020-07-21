@@ -34,7 +34,7 @@ class User {
 
   @override
   String toString() =>
-      'uid: $uid, email: $email, photoUrl: $photoUrl, displayName: $displayName';
+      'uid: $uid, email: $email, photoUrl: $photoUrl, displayName: $displayName, tenantId: $tenantId';
 }
 
 class FirebaseAuthService {
