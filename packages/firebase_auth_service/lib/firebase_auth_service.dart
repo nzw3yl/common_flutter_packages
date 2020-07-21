@@ -63,7 +63,7 @@ class FirebaseAuthService {
       String email, String password) async {
     final AuthResult authResult = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
-    return User.fromFirebaseUser(authResult.user);
+    return User.fromFirebaseUser(authResult.user, 'TENANT_2');
   }
 
   Future<void> sendPasswordResetEmail(String email) async {
