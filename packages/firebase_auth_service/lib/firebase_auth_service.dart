@@ -56,7 +56,7 @@ class FirebaseAuthService {
       email: email,
       password: password,
     ));
-    return User.fromFirebaseUser(user: authResult.user, tenantId: 'TENANT_1');
+    return User.fromFirebaseUser(user: authResult.user,);
   }
 
   Future<User> createUserWithEmailAndPassword(
